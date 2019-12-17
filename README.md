@@ -23,7 +23,9 @@ compute the count of orgs across signal groups.
 3. Since there are some jobs which are created by AWS CONSOLE , so to get better understanding of the story i have attached the Screenshots.
 4. The order of execution to achieve our requirement are as below :-
 
-        a) 
-        b)
-        c)
+        a) Stream_AWS_Firehose(Stream data and use AWS Kinesis firehose to dump the data as JSON onto s3 Location)
+        b) AWS_Glue_ETL ( AWS Glue ETL Job which will convert JSON Small files into Bigger 35mb Parquet files and 
+                dump it on another s3 location)
+        c) EMR_Job ( The Pyspark Job which will run at the end on EMR , perform a use case on parquet files from 
+                step-b and save the data in DynamoDB table.
         
