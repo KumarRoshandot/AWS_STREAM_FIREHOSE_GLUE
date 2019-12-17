@@ -22,17 +22,6 @@ def main():
             print("Invalid Arguments passed ")
             sys.exit(0)
 
-        '''
-        Main Logic to derive all fields based on joins.
-        1) Load everything on spark, whatever is there on this planet
-        2) Create all the columns that need to be derived like valuation_start_date , valuation_end_date , current_flag etc..
-        3) create spark table for each base dataframe , Df.createOrReplaceTempView("<SPARK_TABLE_NAME>")---> Do it for all Dataframe
-        4) DF_RESULT = spark.sql("MAIN SQL QUERY, WRITE ALL JOINS ")
-        5) De-Standardize any column of tpa specific which is required. 
-        6) Cast al the columns to its appropiate data type as per unified_staging table
-        7) Club it with old unified Staging data and write the overall data to staging table as overwrite
-        8) Delete HDFS Files 
-        '''
         source_df = spark.read.parquet(input_s3_loc)
         source_df.createOrReplaceTempView("INPUT_TABLE")
 
